@@ -247,6 +247,11 @@ if test "$my_htop_platform" = "solaris"; then
    AC_CHECK_LIB([malloc], [free], [], [missing_libraries="$missing_libraries libmalloc"])
 fi
 
+AC_ARG_ENABLE(zfs_cache_awareness, [AC_HELP_STRING([--enable-zfs-cache-awareness],[enable ZFS cache awareness for memory usage])], enable_zfs_cache_awareness="yes",enable_zfs_cache_awareness="no")
+if test "x$enable_zfs_cache_awareness" = xyes; then
+    AC_DEFINE(HAVE_ZFS, 1, [Define if we want the memory meter to be aware of the ZFS cache])
+fi
+
 AC_ARG_ENABLE(linux_affinity, [AS_HELP_STRING([--enable-linux-affinity], [enable Linux sched_setaffinity and sched_getaffinity for affinity support, disables hwloc])], ,enable_linux_affinity="yes")
 if test "x$enable_linux_affinity" = xyes -a "x$cross_compiling" = xno; then
    AC_MSG_CHECKING([for usable sched_setaffinity])

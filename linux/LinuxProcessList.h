@@ -89,6 +89,10 @@ typedef struct LinuxProcessList_ {
 #define PROC_LINE_LENGTH 4096
 #endif
 
+#ifndef ZFSINFOFILE
+#define ZFSINFOFILE "/proc/spl/kstat/zfs/arcstats"
+#endif
+
 
 #ifndef CLAMP
 #define CLAMP(x,low,high) (((x)>(high))?(high):(((x)<(low))?(low):(x)))
